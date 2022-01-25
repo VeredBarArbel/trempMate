@@ -1,0 +1,243 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+:root {
+    --pink: #CC6666;
+    --darkPink: #CC4949;
+    --menuWhite: #f2f2f2;
+    --menuRed: #FF4B2B;
+    --menuGreen: rgb(209, 231, 209);
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-areas:
+    'navBar navBar navBar'
+    'header header header'
+    'main main main'
+    'footer footer footer';
+}
+
+body {
+    background-position: center;
+    background-image: url("../media/img/background.jpg");
+    background-size: cover;
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+header {
+    font-family: 'Montserrat', sans-serif;
+    grid-area: header;
+    text-align: center;
+    font-size: 257%;
+    font-weight: bold;
+    color: white;
+    padding-top: 2%;
+}
+
+main {
+    grid-area: main;
+    background-position: center;
+    max-width: 30%;
+    padding-left: 35%;
+    padding-top: 3%;
+    text-align: center;
+}
+
+footer {
+    grid-area: footer;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footerLable {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.feedback-input a {
+    color: var(--pink);
+}
+
+.feedback-input a:hover {
+    color: var(--darkPink);
+}
+
+.feedback-input {
+    color: black;
+    font-weight: 800;
+    font-size: 1.4vw;
+    border-radius: 5px;
+    line-height: 22px;
+    background-color: white;
+    border: 2px solid var(--pink);
+    transition: all 0.3s;
+    padding: 13px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.info {
+    color: black;
+    font-weight: 800;
+    font-size: 1.4vw;
+    border-radius: 5px;
+    background-color: white;
+    border: 2px solid var(--pink);
+    transition: all 0.3s;
+    width: 47%;
+    box-sizing: border-box;
+    outline: 0;
+    padding: 1%;
+    margin: 1%;
+}
+
+
+[type="submit"], .buttonClass {
+    width: 100%;
+    background: var(--menuRed);
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 1.4vw;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: all 0.3s;
+    margin-top: -4px;
+    font-weight: 700;
+}
+
+[type="submit"]:hover, .buttonClass:hover {
+    background: var(--menuGreen);
+}
+
+h1 {
+    font-size: 150%;
+    color: white;
+    text-shadow: var(--menuRed);
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+#profileImg {
+    border-radius: 17%;
+    padding: 3px;
+    margin: 3%;
+    border: 1px solid var(--pink);
+    max-width: 37%;
+}
+
+.wrap {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/*form {*/
+/*    opacity: 80%;*/
+/*}*/
+
+.checked {
+    color: var(--menuRed);
+}
+
+.typingEffect {
+    /*animation*/
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: medium solid transparent; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: typing 4s steps(37, end),
+    blink-caret 0.27s step-end 4.5;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0
+    }
+    to {
+        width: 100%
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent
+    }
+    50% {
+        border-color: var(--pink);
+    }
+}
+
+.topnav {
+    grid-area: navBar;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: var(--menuWhite);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: var(--menuGreen);
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: var(--menuRed);
+    color: white;
+}
+
+/* ride details map */
+#map_box {
+    border-color: var(--pink);
+    border-width: 1vh;
+    border-radius: 5%;
+    width: 60vh;
+    height: 55vh;
+}
+
+label {
+    color: white
+}
+
+.profileInput {
+    background-color: white;
+    border: 2px solid var(--pink);
+    color: black;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+.empty {}

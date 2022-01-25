@@ -1,0 +1,277 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+:root {
+    --pink: #CC6666;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.typingEffect {
+    /*animation*/
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: medium solid transparent; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: typing 4s steps(37, end),
+    blink-caret 0.27s step-end 4.5;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0
+    }
+    to {
+        width: 100%
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent
+    }
+    50% {
+        border-color: var(--pink);
+    }
+}
+
+a {
+    color: white
+}
+
+body {
+    background-image: url("../media/img/background.jpg");
+    background-color: rgb(218, 238, 218);
+    color: white;
+    height: 100%;
+    position: relative;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+form {
+    max-width: 420px;
+    margin: auto;
+    opacity: 80%;
+    /*box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);*/
+    overflow: hidden;
+    width: 768px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 50px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+h2 {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.feedback-input {
+    color: black;
+    font-weight: 800;
+    font-size: 18px;
+    border-radius: 5px;
+    line-height: 22px;
+    background-color: white;
+    border: 2px solid #CC6666;
+    transition: all 0.3s;
+    padding: 13px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.feedback-input:focus {
+    border: 2px solid #CC4949;
+}
+
+textarea {
+    height: 150px;
+    line-height: 150%;
+    resize: vertical;
+}
+
+[type="submit"] {
+    width: 50%;
+    background: #FF4B2B;
+    border: 1px solid #FF4B2B;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: all 0.3s;
+    margin-top: -4px;
+    font-weight: 700;
+}
+
+[type="submit"]:hover {
+    background-color: rgb(209, 231, 209);
+    color: black;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    overflow: hidden;
+    position: absolute;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: rgb(209, 231, 209);
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #FF4B2B;
+    color: white;
+}
+
+i {
+    color: white;
+}
+
+button {
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:hover {
+    background-color: rgb(209, 231, 209);
+    border: 1px solid rgb(209, 231, 209);
+    color: black;
+}
+
+button:focus {
+    outline: none;
+}
+
+button.ghost {
+    background-color: transparent;
+    border-color: #FFFFFF;
+}
+
+#landingForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 50px;
+    height: 100%;
+    text-align: center;
+    opacity: 90%;
+}
+
+#content {
+    margin: 70px;
+}
+
+.footer {
+    margin-top: 20px;
+}
+
+.footerLable {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+
+form {
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+body {
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+p {
+    text-align: center;
+    font-size: 30px;
+    padding: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 3px double white;
+}
+
+
+/* For Small Screens //-------------------*/
+
+@media only screen and (max-height: 450px) {
+    form {
+        font-size: 40px;
+    }
+
+    .topnav {
+        padding-top: 15px;
+    }
+
+    .topnav a {
+        font-size: 18px;
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 70px;
+    padding: 1vh 3vh 1vh 3vh;
+    font-size: 15px;
+}

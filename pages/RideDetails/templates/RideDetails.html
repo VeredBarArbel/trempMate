@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Ride Details | TrempMate {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/total.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='js/project.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+            defer></script>
+{% endblock %}
+
+{% block main %}
+    <div class="gridContainer">
+
+        <!-- header -->
+        <header class="header"><p class="typingEffect">RIDE DETAILS</p></header>
+
+        {% if trip_id %}
+            <!-- main -->
+            <!--Show from DB!!! -->
+            <main class="main">
+                <img id="profileImg" src="./images/driver.jpg" alt="Driver photo"> <br>
+                <div class="wrap">
+                    <div id="rideDetailsFrom" class="info">Goes from: {{ tripStartCity }}</div>
+                    <div id="rideDetailsTo" class="info">Drop at: {{ tripDestCity }}</div>
+                </div>
+                <div class="wrap">
+                    <div id="rideDetailsPickupDate" class="info">Date: {{ tripDate }}</div>
+                    <div id="rideDetailsPickupTime" class="info">Meet at: {{ tripTime }}</div>
+                </div>
+                <div class="wrap">
+                    <div id="rideDetailsPassengers" class="info">Passengers amount: {{ tripSeats }}</div>
+                    <div id="rideDetailsPrice" class="info">Price: {{ tripPrice }} NIS</div>
+                </div>
+                <br>
+
+                <!-- map -->
+                <div class="map">
+                    <iframe id="map_box" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96169.07947382829!2d-71.409954551555!3d-41.128331640414906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7b1520c860e5%3A0x8210ae97
+               cb7b9a65!2sSan%20Carlos%20de%20Bariloche%2C%20R%C3%ADo%20Negro%2C%20Argentina!5e0!3m2!1sen!2sin!4v1620132083082!5m2!1sen!2sin"
+                            frameborder="0"></iframe>
+                </div>
+                <br>
+
+                <form action="/SaveASpot" method="post">
+                    <!--edit onclick JS function - send request to join the ride -->
+                    <label for="trip_id"></label>
+                    <input type="text" id="trip_id" name="trip_id" value="{{ trip_id }}" hidden>
+                    <input id="saveASpot" type="submit" value="Save me a spot!"
+                           onclick=notification("saveASpot","You_got_yourself_a_spot!")>
+                </form>
+                <br> <br>
+
+            </main>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
