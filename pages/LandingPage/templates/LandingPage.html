@@ -11,16 +11,13 @@
     <div id="content">
         <h1 class="typingEffect">Hi TrempMate!</h1>
         <h2>Which jorney are you starting today?</h2>
-        <form action="#" id="landingForm">
-            {#            <button><i class="fa fa-car"></i> <a href="../../SearchARide/templates/SearchARide.html">Join a Ride</a></button>#}
+        <div id="landingForm">
             <button><i class="fa fa-car"></i> <a href="{{ url_for('SearchARide.index') }}">Join a Ride</a></button>
             <br>
-{#            <button><i class="fa fa-plus"></i> <a href="../../AddARide/templates/AddARide.html">Create a Ride</a>#}
-{#            </button>#}
             <button><i class="fa fa-car"></i> <a href="{{ url_for('AddARide.index') }}">Create a Ride</a></button>
             <br>
             <button><i class="fa fa-history"></i> My History Rides</button>
-        </form>
+        </div>
     </div>
 
 

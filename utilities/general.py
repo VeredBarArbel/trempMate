@@ -3,10 +3,15 @@ from utilities.classes.Trip import Trip
 from utilities.classes.User import User
 
 def get_user(email):
-    query = 'select * from users where email = %s' % email
-    user_result = dbManager.fetch(query)[0] #return a list with the user details
-    user = User(user_result[0], user_result[1], user_result[2], user_result[4],
-                user_result[5], user_result[6], user_result[7], user_result[8])
+    # query = 'select * from users where email = %s;' % email
+    query = f'select * from users where email = "{email}";'
+    user_result = dbManager.fetch(query) #return a list with the user details if exist
+    if user_result != False:
+        user_result = user_result[0]
+        user = User(user_result[0], user_result[1], user_result[2], user_result[4],
+                    user_result[5], user_result[6], user_result[7], user_result[8])
+    else:
+        user = '' #user dosen't exist
     return user #list with all users's details - in order to insert into session
 
 def get_trip(tripID):

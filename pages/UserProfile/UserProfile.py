@@ -24,4 +24,5 @@ def updateProfile():
     carColor = request.form['car_color']
     user = general.get_user(session['email'])
     user.update_user(fname, lname, about, phone, password, carType, carColor)
+    user.user_session()
     return redirect('/UserProfile')

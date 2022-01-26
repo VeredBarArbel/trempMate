@@ -11,7 +11,6 @@
 <body>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-
         <!-- sign up -->
         <form action="/signup" method="post">
             <h1>Create Account</h1>
@@ -36,8 +35,10 @@
             <input type="submit" class="button" value="Sign Up">
         </form>
     </div>
+
     <div class="form-container sign-in-container">
-        <form action="#">
+        <!-- sign in -->
+        <form action="/signIn" method="post">
             <h1>Sign in</h1>
             <div class="social-container">
                 <a href="https://www.facebook.com/" class="social" target="blank"><i class="fa fa-facebook"></i></a>
@@ -47,12 +48,14 @@
                         class="fa fa-linkedin"></i></a>
             </div>
             <span>or use your account</span>
-            <input id="email" onblur="checkEmail('email')" type="email" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
+            <input id="email" name="email" onblur="checkEmail('email')" type="email" placeholder="Email"/>
+            <input id="password" name="password" type="password" placeholder="Password"/>
             <a href="#" id="pass">Forgot your password?</a>
-            <button id="signToHome"><a href="{{ url_for('LandingPage.redirect_homepage') }}">Sign In</a></button>
+{#            <button id="signToHome" type="submit"><a href="{{ url_for('LandingPage.index') }}">Sign In</a></button>#}
+            <input type="submit" class="button" id="signToHome" placeholder="Sign In">
         </form>
     </div>
+
     <div class="overlay-container">
         <div class="overlay">
             <div class="overlay-panel overlay-left">
