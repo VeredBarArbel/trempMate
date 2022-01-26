@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, session, flash
 from utilities import general
 
 # RideDetails blueprint definition
@@ -12,7 +12,6 @@ RideDetails = Blueprint('RideDetails', __name__, static_folder='static', static_
 def index(tripID):
     if tripID != -1:  # got a trip id
         # show relevant data from DB
-        print(type(tripID))
         tripRow = general.get_trip(tripID)
         if tripRow != False:  # found your trip
             trip_id = tripRow[0]
@@ -33,7 +32,13 @@ def index(tripID):
 @RideDetails.route('/SaveASpot', methods=['POST'])
 def SaveASpot():
     tripID = request.form['trip_id']
+    amount = request.form['amount']
     # add to DB if there are available spots left
-    # user = session[]
-    save = general.save_spot(tripID, 'vba@gmail.com')
+    save = general.save_spot(tripID, session['email'], amount)
+    if save == "not enough seats":
+        flash("Oh no, we couldn't save a spot because there are not enough seats. " \
+                          "Try again!")
+    else:
+        flash("%s spots saved successfully!" %amount)
+    #enough seats
     return redirect(f'/RideDetails/{tripID}')

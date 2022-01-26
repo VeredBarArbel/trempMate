@@ -23,6 +23,12 @@
             <!-- main -->
             <!--Show from DB!!! -->
             <main class="main">
+
+                <!-- message -->
+                {% for message in get_flashed_messages() %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+
                 <img id="profileImg" src="./images/driver.jpg" alt="Driver photo"> <br>
                 <div class="wrap">
                     <div id="rideDetailsFrom" class="info">Goes from: {{ tripStartCity }}</div>
@@ -50,8 +56,11 @@
                     <!--edit onclick JS function - send request to join the ride -->
                     <label for="trip_id"></label>
                     <input type="text" id="trip_id" name="trip_id" value="{{ trip_id }}" hidden>
-                    <input id="saveASpot" type="submit" value="Save me a spot!"
-                           onclick=notification("saveASpot","You_got_yourself_a_spot!")>
+                    <label for="amount">How many spots to save: </label>
+                    <input type="number" class="profileInput" value="1" , id="amount" name="amount" min="1">
+                    <br><br>
+                    <input id="saveASpot" type="submit" value="Save me a spot!">
+                    {#                           onclick=notification("saveASpot","You_got_yourself_a_spot!")>#}
                 </form>
                 <br> <br>
 

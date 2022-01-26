@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, session, request, redirect
-from utilities.db.db_manager import dbeWelcome
+from flask import Blueprint, render_template, session, request, redirect, flash
+# from utilities.db.db_manager import dbeWelcome
 from utilities.classes.User import User
 from utilities import general
 
@@ -22,7 +22,15 @@ def signup():
     email = request.form['Gmail']
     user_fname = request.form['fname']
     user_lname = request.form['lname']
-    return dbeWelcome.addUser(email=email, fname=user_fname, lname=user_lname, password=password)
+    user = general.get_user(email)
+    if user != '': #user exist
+        flash('Email already exist. Try to sign in or sign up with another email.')
+        return redirect('/')
+    #user doesn't exist - create one
+    user = User(email, user_fname, user_lname, '', '', password, '', '')
+    user.register_user()
+    user.user_session()
+    return redirect('/home')
 
 @Welcome.route('/signIn', methods=['post'])
 def signIn():

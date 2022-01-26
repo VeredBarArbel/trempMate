@@ -12,8 +12,7 @@ def index():
 
 @AddARide.route('/submitARide' ,methods=['POST'])
 def submitARide():
-    # driver = session['email'] #CREATE SESSION
-    driver = "vba@gmail.com"
+    driver = session['email'] #CREATE SESSION
     pickupCity = request.form['goesFrom']
     dropCity = request.form['dropAt']
     price = request.form['price']
@@ -24,6 +23,6 @@ def submitARide():
     newTrip = Trip(driver, date, time, pickupCity, dropCity, passengers, price)
     newTrip.create_trip()
     #return the ride page in Join a ride
-    return redirect(url_for('AddARide.index'))
+    return redirect('/AddARide')
 
 

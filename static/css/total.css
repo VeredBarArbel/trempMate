@@ -239,5 +239,20 @@ label {
     padding: 1%;
     border-radius: 5px;
 }
+.flash {
+    background-color: var(--pink);
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 5px;
+}
 
 .empty {}
+
+table {
+    background-color: white;
+    border: 2px solid var(--pink);
+    border-radius: 5px;
+}

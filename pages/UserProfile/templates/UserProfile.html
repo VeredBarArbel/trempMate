@@ -12,73 +12,78 @@
 {% endblock %}
 
 {% block main %}
-<div class="gridContainer">
-    <!-- header -->
-    <header class="header"><p class="typingEffect">My Profile</p></header>
+    <div class="gridContainer">
+        <!-- header -->
+        <header class="header"><p class="typingEffect">My Profile</p></header>
 
-    <!-- main -->
-    <main class="main">
+        <!-- main -->
+        <main class="main">
 
-        <!--My name -->
-        <h1>Hey {{ session.first_name }}!</h1>
+            <!-- message -->
+            {% for message in get_flashed_messages() %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
 
-        <!--The user profile pic. the src need to refer the DB!!
-        <img id="profileImg" src="./images/grootProfile.jpg" alt="My Profile Pic"> <br>
-        -->
-        <!--Edit profile pic - edit the action attribute!!!
-        <form id="editProfilePic" action="">
-            <label for="profilePic">Update image:</label>
-            <input type="file" id="profilePic" name="profilePic"
-                   onchange=buttonVisibility("profilePicSubmit")> <br><br>
-            <input type="submit" id="profilePicSubmit" style="visibility: hidden" class="buttonClass"
-                   onclick=notification("profilePicSubmit","Looking_good!")>
-        </form>
-        -->
+            <!--My name -->
+            <h1>Hey {{ session.first_name }}!</h1>
 
-        <!--my details -->
-        <form action="/updateProfile" method="post">
-            <label for="first_name">First name:</label>
-            <input type="text" name="first_name" id="first_name" placeholder="e.g. Israel"
-                   value="{{ session.first_name }}" required class="profileInput"><br>
-            <label for="last_name">Last name:</label>
-            <input type="text" name="last_name" id="last_name" placeholder="e.g. Israeli"
-                   value="{{ session.last_name }}" class="profileInput"><br>
-            <label for="about_me"><h1>About Me: </h1></label>
-            <textarea name="about_me" id="about_me" class="feedback-input" placeholder="I love to..">
+            <!--The user profile pic. the src need to refer the DB!!
+            <img id="profileImg" src="./images/grootProfile.jpg" alt="My Profile Pic"> <br>
+            -->
+            <!--Edit profile pic - edit the action attribute!!!
+            <form id="editProfilePic" action="">
+                <label for="profilePic">Update image:</label>
+                <input type="file" id="profilePic" name="profilePic"
+                       onchange=buttonVisibility("profilePicSubmit")> <br><br>
+                <input type="submit" id="profilePicSubmit" style="visibility: hidden" class="buttonClass"
+                       onclick=notification("profilePicSubmit","Looking_good!")>
+            </form>
+            -->
+
+            <!--my details -->
+            <form action="/updateProfile" method="post">
+                <label for="first_name">First name:</label>
+                <input type="text" name="first_name" id="first_name" placeholder="e.g. Israel"
+                       value="{{ session.first_name }}" required class="profileInput"><br>
+                <label for="last_name">Last name:</label>
+                <input type="text" name="last_name" id="last_name" placeholder="e.g. Israeli"
+                       value="{{ session.last_name }}" class="profileInput"><br>
+                <label for="about_me"><h1>About Me: </h1></label>
+                <textarea name="about_me" id="about_me" class="feedback-input" placeholder="I love to..">
                 {{ session.about_me }}
             </textarea> <br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" placeholder="e.g. p@ssw0rD"
-                   value="{{ session.password }}" required class="profileInput"><br>
-            <label for="phone">Phone number:</label>
-            <input type="text" name="phone" id="phone" placeholder="e.g. 0501234567"
-                   value="{{ session.phone_number }}" class="profileInput"><br>
-            <label for="car_type">My car's type is:</label>
-            <input type="text" name="car_type" id="car_type" placeholder="e.g. mazda"
-                   value="{{ session.car_type }}" class="profileInput"><br>
-            <label for="car_color">My car's color is:</label>
-            <input type="text" name="car_color" id="car_color" placeholder="e.g. blue"
-                   value="{{ session.car_color }}" class="profileInput"><br><br>
-            <input id="updateProfileSubmission" type="submit" class="buttonClass" value="Update!"
-                   onclick=notification("updateProfileSubmission","It's_a_new_you;)")>
-        </form>
-        <br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="e.g. p@ssw0rD"
+                       value="{{ session.password }}" required class="profileInput"><br>
+                <label for="phone">Phone number:</label>
+                <input type="text" name="phone" id="phone" placeholder="e.g. 0501234567"
+                       value="{{ session.phone_number }}" class="profileInput"><br>
+                <label for="car_type">My car's type is:</label>
+                <input type="text" name="car_type" id="car_type" placeholder="e.g. mazda"
+                       value="{{ session.car_type }}" class="profileInput"><br>
+                <label for="car_color">My car's color is:</label>
+                <input type="text" name="car_color" id="car_color" placeholder="e.g. blue"
+                       value="{{ session.car_color }}" class="profileInput"><br><br>
+                <input id="updateProfileSubmission" type="submit" class="buttonClass" value="Update!">
+{#                       onclick=notification("updateProfileSubmission","It's_a_new_you;)")>#}
+            </form>
+            <br>
 
-        <div>
-            <!--Rating - calculate from DB!! -->
-            <!--Add CSS: .checked{ color:orange; } -->
-            <div id="rating">
-                <h3>My Rating:</h3>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+            <div>
+                <!--Rating - calculate from DB!! -->
+                <!--Add CSS: .checked{ color:orange; } -->
+                <div id="rating">
+                    <h3>My Rating:</h3>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
             </div>
-        </div>
-        <br>
-    </main>
-</div>
+            <br>
+        </main>
+    </div>
 {% endblock %}
 
 

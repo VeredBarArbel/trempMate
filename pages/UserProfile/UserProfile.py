@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, request, redirect
+from flask import Blueprint, render_template, session, request, redirect, flash
 from utilities import general
 
 # UserProfile blueprint definition
@@ -23,6 +23,9 @@ def updateProfile():
     carType = request.form['car_type']
     carColor = request.form['car_color']
     user = general.get_user(session['email'])
-    user.update_user(fname, lname, about, phone, password, carType, carColor)
-    user.user_session()
+    if user.update_user(fname, lname, about, phone, password, carType, carColor):
+        user.user_session()
+        flash("You're all set up!")
+    else:
+        flash("Something went wrong, please try again")
     return redirect('/UserProfile')

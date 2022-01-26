@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Ride History Page | TrempMate {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/total.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block main %}
+    <main>
+
+        <!-- message -->
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% if driver %} <!-- rides where I'm the driver -->
+            <h1>Driver Ride History</h1>
+
+            <table>
+                <tr>
+                    <th>Ride Date</th>
+                    <th>Ride Time</th>
+                    <th>Start City</th>
+                    <th>Drop City</th>
+                    <th>Passengers</th>
+                </tr>
+                {% for row in driver %}
+                    <tr>
+                        <td>{{ row.pick_up_date }}</td>
+                        <td>{{ row.pick_up_time }}</td>
+                        <td>{{ row.pick_up_city }}</td>
+                        <td>{{ row.drop_city }}</td>
+                        <td>{{ row.passengers }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %} <!-- if driver -->
+        <br>
+
+        {% if tremp %} <!-- tremp rides -->
+            <h1>My Tremp History</h1>
+
+            <table>
+                <tr>
+                    <th>Ride Date</th>
+                    <th>Ride Time</th>
+                    <th>Start City</th>
+                    <th>Drop City</th>
+                    <th>Seats Amount</th>
+                </tr>
+                {% for row in tremp %}
+                    <tr>
+                        <td>{{ row.pick_up_date }}</td>
+                        <td>{{ row.pick_up_time }}</td>
+                        <td>{{ row.pick_up_city }}</td>
+                        <td>{{ row.drop_city }}</td>
+                        <td>{{ row.seats_amount }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %} <!-- if tremp -->
+
+    </main>
+{% endblock %}

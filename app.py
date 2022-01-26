@@ -38,6 +38,10 @@ app.register_blueprint(SearchARide)
 ## UserProfile
 from pages.UserProfile.UserProfile import UserProfile
 app.register_blueprint(UserProfile)
+
+## RideHistory
+from pages.RideHistory.RideHistory import RideHistory
+app.register_blueprint(RideHistory)
 #
 # ## Page error handlers
 # from pages.page_error_handlers.page_error_handlers import page_error_handlers

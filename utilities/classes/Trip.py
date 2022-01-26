@@ -29,3 +29,6 @@ class Trip:
         # newDBManager = DBManager()
         isregister = dbManager.commit(query=query, args=args)
         return isregister == 1  # one row was affected
+
+    def get_id(self):
+        return self.__trip_id

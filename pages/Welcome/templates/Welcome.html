@@ -26,7 +26,7 @@
             <input type="text" id="lname" name="lname" placeholder="Last Name"/>
             <input id="Gmail" name="Gmail" onblur="checkEmail('Gmail')" type="email" placeholder="*Email" required/>
             <input type="password" id="signuppass" name="signuppass" placeholder="*Password" required/>
-            {% if session.email %} <h5> Email already exists </h5> {% endif %}
+{#            {% if session.email %} <h5> Email already exists </h5> {% endif %}#}
             <div class="inline-container">
                 <label for="remember">Remember me</label>
                 <input type="checkbox" checked="checked" name="remember" id="remember"/>
@@ -51,7 +51,6 @@
             <input id="email" name="email" onblur="checkEmail('email')" type="email" placeholder="Email"/>
             <input id="password" name="password" type="password" placeholder="Password"/>
             <a href="#" id="pass">Forgot your password?</a>
-{#            <button id="signToHome" type="submit"><a href="{{ url_for('LandingPage.index') }}">Sign In</a></button>#}
             <input type="submit" class="button" id="signToHome" placeholder="Sign In">
         </form>
     </div>

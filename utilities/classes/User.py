@@ -18,7 +18,7 @@ class User:
         self.__email = email
         self.__first_name = firstname
         self.__last_name = lastname
-        self.__create_date = datetime.datetime.now().timestamp()
+        self.__create_date = datetime.datetime.now()
         self.__about_me = aboutme
         self.__phone_number = phonenum
         self.__password = password
