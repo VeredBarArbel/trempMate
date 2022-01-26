@@ -297,3 +297,9 @@ i {
     text-align: center;
 }
 
+.flash {
+    color: black;
+    font-size: 170%;
+    margin: 1%;
+    padding: 1%;
+}

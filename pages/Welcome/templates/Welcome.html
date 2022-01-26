@@ -10,6 +10,7 @@
 </head>
 <body>
 <div class="container" id="container">
+
     <div class="form-container sign-up-container">
         <!-- sign up -->
         <form action="/signup" method="post">
@@ -26,7 +27,7 @@
             <input type="text" id="lname" name="lname" placeholder="Last Name"/>
             <input id="Gmail" name="Gmail" onblur="checkEmail('Gmail')" type="email" placeholder="*Email" required/>
             <input type="password" id="signuppass" name="signuppass" placeholder="*Password" required/>
-{#            {% if session.email %} <h5> Email already exists </h5> {% endif %}#}
+            {#            {% if session.email %} <h5> Email already exists </h5> {% endif %}#}
             <div class="inline-container">
                 <label for="remember">Remember me</label>
                 <input type="checkbox" checked="checked" name="remember" id="remember"/>
@@ -50,7 +51,7 @@
             <span>or use your account</span>
             <input id="email" name="email" onblur="checkEmail('email')" type="email" placeholder="Email"/>
             <input id="password" name="password" type="password" placeholder="Password"/>
-            <a href="#" id="pass">Forgot your password?</a>
+{#            <a href="#" id="pass">Forgot your password?</a>#}
             <input type="submit" class="button" id="signToHome" placeholder="Sign In">
         </form>
     </div>
@@ -63,6 +64,12 @@
                 <button class="ghost" id="signIn">Sign In</button>
             </div>
             <div class="overlay-panel overlay-right">
+
+                <!-- message -->
+                {% for message in get_flashed_messages() %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+
                 <h1>Not A Member Yet?<br> Ride With Us!</h1>
                 <p>Enter your personal details so we can start our journey together</p>
                 <button class="ghost" id="signUp">Sign Up</button>

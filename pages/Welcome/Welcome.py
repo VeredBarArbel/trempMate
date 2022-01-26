@@ -11,7 +11,6 @@ Welcome = Blueprint('Welcome', __name__, static_folder='static', static_url_path
 @Welcome.route('/Login')
 @Welcome.route('/')
 def welcome():
-    session.clear()
     return render_template('Welcome.html')
 
 
@@ -34,6 +33,7 @@ def signup():
 
 @Welcome.route('/signIn', methods=['post'])
 def signIn():
+    session.clear()
     password = request.form['password']
     email = request.form['email']
     user = general.get_user(email)
@@ -41,4 +41,6 @@ def signIn():
         if user.check_password(password): #matching password
             user.user_session()
             return redirect('/home')
+        flash('Wrong password - try again')
+    flash("Email doesn't exist. Try to sign up or sign in with another email.")
     return redirect('/Login') #user doesn't wxist or password doesn't match
