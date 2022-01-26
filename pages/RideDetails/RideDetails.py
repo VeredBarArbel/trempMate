@@ -38,6 +38,8 @@ def SaveASpot():
     if save == "not enough seats":
         flash("Oh no, we couldn't save a spot because there are not enough seats. " \
                           "Try again!")
+    elif save == "already registered":
+        flash("You are already register to this trip")
     else:
         flash("%s spots saved successfully!" %amount)
     #enough seats

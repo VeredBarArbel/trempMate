@@ -12,39 +12,52 @@
 {% endblock %}
 
 {% block main %}
-<div class="gridContainer">
+    <div class="gridContainer">
 
-    <!-- header -->
-    <header class="header"><p class="typingEffect">Search a Ride</p></header>
+        <!-- header -->
+        <header class="header"><p class="typingEffect">Search a Ride</p></header>
 
-    <!-- main -->
-    <main class="main">
-        <!--About me - edit the action attribute!!! -->
-        <form action="/showDetails" method="post">
-            <label for="rideFrom"></label>
-            <input type="search" name="rideFrom" id="rideFrom" placeholder="From: Choose starting point"
-                   class="feedback-input"> <br>
-            <label for="rideTo"></label>
-            <input type="search" name="rideTo" id="rideTo" placeholder="To: Where do you want to go?"
-                   class="feedback-input"> <br>
+        <!-- main -->
+        <main class="main">
+            <!--About me - edit the action attribute!!! -->
+            <form action="/showDetails" method="post">
+                <label for="rideFrom"></label>
+                <input type="search" name="rideFrom" id="rideFrom" placeholder="From: Choose starting point"
+                       class="feedback-input" required> <br>
+                <label for="rideTo"></label>
+                <input type="search" name="rideTo" id="rideTo" placeholder="To: Where do you want to go?"
+                       class="feedback-input" required> <br>
+                <label for="date">When do you want to go?</label> <br>
+                <input type="date" name="date" id="date" class="feedback-input" required> <br>
+                <br>
+                <label for="search"></label>
+                <input type="submit" name="search" id="search" class="buttonClass" value="Search my ride">
+            </form>
             <br>
-            <label for="search"></label>
-            <input type="button" name="search" id="search" class="buttonClass" value="Search my ride"
-                   onclick=buttonVisibility("searchResults")>
-        </form>
-        <br>
 
-        <!-- Results -->
-        <div id="searchResults" class="feedback-input" style="visibility: hidden">
-            Here goes the rides results
-            <ul>
-                <il><a href="../../RideDetails/templates/RideDetails.html">BGU-TLV Mall example</a></il>
-            </ul>
-        </div>
-        <br>
+            {% if showDetails %}
+                <!-- Results -->
+                <div id="searchResults" class="feedback-input">
 
-    </main>
+                    <!-- message -->
+                    {% for message in get_flashed_messages() %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
 
-</div>
+                    {% if search != False %}
+                        <ul>
+                            {% for id in search %}
+                                <il><a href="{{ url_for('RideDetails.index', tripID=id.trip_id) }}">Watch me</a></il>
+                                <br>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <br>
+            {% endif %}
+
+        </main>
+
+    </div>
 
 {% endblock %}

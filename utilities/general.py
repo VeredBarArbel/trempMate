@@ -20,6 +20,11 @@ def get_trip(tripID):
     return trip_result
 
 def save_spot(tripId, user, amount):
+    #check if the user alredy register for this drive
+    query = f'select * from tripuser where user = "{user}" and trip = {tripId}'
+    is_register = dbManager.fetch(query)  # return a list with the trip details
+    if is_register != False and is_register != []: #found a match
+        return "already registered"
     #check if there are enough seats
     amount = int(amount)
     checkAmountQuery = 'select available_seats from trips where trip_id = %s' % tripId
@@ -53,3 +58,12 @@ def tremp_history(trempEmail):
         print(tremp_result)
         return tremp_result
     return False
+
+#Search a ride
+def search_ride(startCity, endCity, date):
+    query = f'select trip_id from trips where pick_up_city = "{startCity}" ' \
+            f'and drop_city = "{endCity}" and pick_up_date = "{date}" and available_seats>0'
+    search_result = dbManager.fetch(query) #return a list with the trip details
+    if search_result != False and search_result != []:
+        return search_result
+    return False #couldn't find a match
