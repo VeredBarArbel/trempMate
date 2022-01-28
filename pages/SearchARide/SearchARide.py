@@ -16,6 +16,7 @@ def index():
 @SearchARide.route('/showDetails', methods=['POST'])
 def showDetails():
     # show relevant links
+    cities = general.city()
     startCity = request.form['rideFrom']
     endCity = request.form['rideTo']
     date = request.form['date']
@@ -26,4 +27,4 @@ def showDetails():
     elif search == False: #inserted date already passed
         flash("You can't register for a past trip")
     showDetails = True
-    return render_template('SearchARide.html', search=search, showDetails=showDetails)
+    return render_template('SearchARide.html', search=search, showDetails=showDetails, cities=cities)

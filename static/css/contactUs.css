@@ -275,3 +275,14 @@ p {
     padding: 1vh 3vh 1vh 3vh;
     font-size: 15px;
 }
+
+.flash {
+    background-color: var(--pink);
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 5px;
+    text-align: center;
+}

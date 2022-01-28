@@ -42,5 +42,6 @@ def signIn():
             user.user_session()
             return redirect('/home')
         flash('Wrong password - try again')
-    flash("Email doesn't exist. Try to sign up or sign in with another email.")
+    else:
+        flash("Email doesn't exist. Try to sign up or sign in with another email.")
     return redirect('/Login') #user doesn't wxist or password doesn't match

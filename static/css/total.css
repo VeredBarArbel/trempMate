@@ -239,6 +239,7 @@ label {
     padding: 1%;
     border-radius: 5px;
 }
+
 .flash {
     background-color: var(--pink);
     border: 2px solid white;
