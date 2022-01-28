@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, session, request, redirect, url_for
+from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 from utilities.classes.Trip import Trip
+from utilities import general
 from datetime import datetime
 # AddARide blueprint definition
 AddARide = Blueprint('AddARide', __name__, static_folder='static', static_url_path='/AddARide', template_folder='templates')
@@ -8,7 +9,8 @@ AddARide = Blueprint('AddARide', __name__, static_folder='static', static_url_pa
 # Routes
 @AddARide.route('/AddARide')
 def index():
-    return render_template('AddARide.html')
+    cities = general.city()
+    return render_template('AddARide.html', cities=cities)
 
 @AddARide.route('/submitARide' ,methods=['POST'])
 def submitARide():
@@ -19,9 +21,14 @@ def submitARide():
     date = request.form['rideDate']
     time = request.form['rideHour']
     passengers = request.form['passengers']
-    #insert ride to DB
-    newTrip = Trip(driver, date, time, pickupCity, dropCity, passengers, price)
-    newTrip.create_trip()
+    #can only add future rides
+    if datetime.strptime(date, '%Y-%m-%d').date() <= datetime.now().date():
+        flash("You can only add future rides")
+    else:
+        #insert ride to DB
+        newTrip = Trip(driver, date, time, pickupCity, dropCity, passengers, price)
+        newTrip.create_trip()
+        flash("Your ride was added successfully")
     #return the ride page in Join a ride
     return redirect('/AddARide')
 

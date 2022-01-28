@@ -12,32 +12,51 @@
 {% endblock %}
 
 {% block main %}
-<div class="gridContainer">
-    <!-- header -->
-    <header class="header"><p class="typingEffect">Add a Ride</p></header>
+    <div class="gridContainer">
+        <!-- header -->
+        <header class="header"><p class="typingEffect">Add a Ride</p></header>
 
-    <!-- main -->
-    <main class="main">
-        <form action="/submitARide" method="post">
-            <label for="goesFrom"></label>
-            <input type="text" name="goesFrom" id="goesFrom" placeholder="From:" class="feedback-input"> <br>
-            <label for="dropAt"></label>
-            <input type="text" name="dropAt" id="dropAt" placeholder="Drop at:" class="feedback-input"> <br>
-            <label for="price"></label>
-            <input type="number" name="price" id="price" placeholder="Price:" class="feedback-input"> <br>
-            <label for="rideDate"></label>
-            <input type="date" name="rideDate" id="rideDate" placeholder="Ride date:" class="feedback-input"> <br>
-            <label for="rideHour"></label>
-            <input type="time" name="rideHour" id="rideHour" placeholder="Ride hour:" class="feedback-input"> <br>
-            <label for="passengers"></label>
-            <input type="number" name="passengers" id="passengers" placeholder="Passengers amount:" class="feedback-input"> <br>
+        <!-- main -->
+        <main class="main">
+
+            <!-- message -->
+            {% for message in get_flashed_messages() %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
             <br>
-            <input id="createRide" type="submit" value="Create a ride"
-                   onclick=notification("createRide","You_add_a_new_ride")>
-        </form>
-        <br>
 
-    </main>
+            <form action="/submitARide" method="post">
+                <label for="goesFrom"></label>
+                <select name="goesFrom" id="goesFrom" class="feedback-input" required>
+                    <option value="" disabled selected>From:</option>
+                    {% for city in cities %}
+                        <option value="{{ city.city }}">{{ city.city }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="dropAt"></label>
+                <select name="dropAt" id="dropAt" class="feedback-input" required>
+                    <option value="" disabled selected>Drop at:</option>
+                    {% for city in cities %}
+                        <option value="{{ city.city }}">{{ city.city }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="price"></label>
+                <input type="number" name="price" id="price" placeholder="Price:" class="feedback-input"> <br>
+                <label for="rideDate"></label>
+                <input type="date" name="rideDate" id="rideDate" placeholder="Ride date:" class="feedback-input"> <br>
+                <label for="rideHour"></label>
+                <input type="time" name="rideHour" id="rideHour" placeholder="Ride hour:" class="feedback-input"> <br>
+                <label for="passengers"></label>
+                <input type="number" name="passengers" id="passengers" placeholder="Passengers amount:"
+                       class="feedback-input"> <br>
+                <br>
+                <input id="createRide" type="submit" value="Create a ride">
+            </form>
+            <br>
 
-</div>
+        </main>
+
+    </div>
 {% endblock %}

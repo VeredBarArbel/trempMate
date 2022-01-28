@@ -50,8 +50,8 @@ class DBManager:
         # Executes a given query with given args, if provided.
         if query:
             try:
-                print(args)
-                print(query)
+                # print(args)
+                # print(query)
                 self.__cursor.execute(query, args)
                 return True
             except mysql.connector.Error as error:
@@ -70,26 +70,3 @@ class DBManager:
 
 # Creates an instance for the DBManager class for export.
 dbManager = DBManager()
-
-
-# class db_welcome:
-#     def _init_(self):
-#         self.db = DBManager()
-#
-#     def addUser(self, email, fname, lname, password):
-#         email_list = self.db.fetch(query='select email from users;')
-#         if email in email_list:
-#             session['exist'] = True
-#             return redirect(url_for("Welcome.welcome"))
-#         else:
-#             session['exist'] = False
-#             query = 'insert into users(first_name, last_name, email, password) values ("%s", "%s", "%s", "%s");' % (
-#                 fname, lname, email, password)
-#             self.db.commit(query)
-#             session['first_name'] = fname
-#             session['last_name'] = lname
-#             session['email'] = email
-#             return redirect(url_for("LandingPage.index"))
-#
-#
-# dbeWelcome = db_welcome()

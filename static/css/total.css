@@ -213,7 +213,7 @@ h1 {
 }
 
 /* Add a color to the active/current link */
-.topnav a.active {
+a.active {
     background-color: var(--menuRed);
     color: white;
 }

@@ -11,6 +11,13 @@
     <div class="container" id="contact">
 
         <h1 class="typingEffect"> Contact Us</h1>
+
+        <!-- message -->
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+        <br>
+
         <form action="/submitContactReq" method="post">
             <input name="contactEmail" type="text" class="feedback-input" placeholder="Email"/>
             <textarea name="contactDescription" class="feedback-input" placeholder="Tell us what you think"></textarea>

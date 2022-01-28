@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, flash
 from utilities.classes.ContactDetails import Contact
 
 # ContactUs blueprint definition
@@ -18,7 +18,7 @@ def submitContact():
     # add req to DB
     newContactReq = Contact(email, description)
     newContactReq.create_req()
-    # pop-up note: Your request has been submitted, talk to you soon (:
+    flash("Your request has been submitted, talk to you soon (:")
     return redirect(url_for('ContactUs.contact'))
 
 

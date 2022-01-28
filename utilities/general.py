@@ -1,6 +1,7 @@
 from utilities.db.db_manager import dbManager
 from utilities.classes.Trip import Trip
 from utilities.classes.User import User
+import datetime
 
 def get_user(email):
     # query = 'select * from users where email = %s;' % email
@@ -23,8 +24,9 @@ def save_spot(tripId, user, amount):
     #check if the user alredy register for this drive
     query = f'select * from tripuser where user = "{user}" and trip = {tripId}'
     is_register = dbManager.fetch(query)  # return a list with the trip details
-    if is_register != False and is_register != []: #found a match
-        return "already registered"
+    if is_register is not False and is_register != []: #found a match
+        seats = is_register[0].seats_amount
+        return f"You are already register with {seats} seats for this trip"
     #check if there are enough seats
     amount = int(amount)
     checkAmountQuery = 'select available_seats from trips where trip_id = %s' % tripId
@@ -59,11 +61,36 @@ def tremp_history(trempEmail):
         return tremp_result
     return False
 
+def remove_reg(user, trip):
+    seatsQuery = f'select seats_amount from tripuser ' \
+                 f'where user = "{user}" and trip = {trip};'
+    seats = dbManager.fetch(seatsQuery)[0].seats_amount
+    #delete from tripuser
+    deleteQuery = f'delete from tripuser where user = "{user}" and trip = {trip};'
+    delete = dbManager.commit(deleteQuery)
+    print(seats)
+    #update availables seats amount in trips
+    updatequery = f'update trips set available_seats = (available_seats+{seats})' \
+            f'where trip_id = {trip};'
+    update = dbManager.commit(updatequery)
+    return
+
+
 #Search a ride
 def search_ride(startCity, endCity, date):
-    query = f'select trip_id from trips where pick_up_city = "{startCity}" ' \
-            f'and drop_city = "{endCity}" and pick_up_date = "{date}" and available_seats>0'
-    search_result = dbManager.fetch(query) #return a list with the trip details
-    if search_result != False and search_result != []:
-        return search_result
+    if datetime.datetime.strptime(date, '%Y-%m-%d').date() > datetime.datetime.now().date(): #can't register to past ride
+        query = f'select trip_id from trips where pick_up_city = "{startCity}" ' \
+                f'and drop_city = "{endCity}" and pick_up_date = "{date}" and available_seats>0'
+        search_result = dbManager.fetch(query) #return a list with the trip details
+        if search_result is not False and search_result != []:
+            return search_result
+        else:
+            return "Couldn't find relevant trips for you"
     return False #couldn't find a match
+
+
+#city picker
+def city():
+    query = 'select * from cities'
+    city_list = dbManager.fetch(query)
+    return city_list

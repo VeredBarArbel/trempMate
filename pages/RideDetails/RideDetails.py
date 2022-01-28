@@ -35,12 +35,12 @@ def SaveASpot():
     amount = request.form['amount']
     # add to DB if there are available spots left
     save = general.save_spot(tripID, session['email'], amount)
-    if save == "not enough seats":
+    if save == True:
+        flash("%s spots saved successfully!" % amount)
+    elif save == "not enough seats":
         flash("Oh no, we couldn't save a spot because there are not enough seats. " \
                           "Try again!")
-    elif save == "already registered":
-        flash("You are already register to this trip")
     else:
-        flash("%s spots saved successfully!" %amount)
-    #enough seats
+        flash(save)
+#enough seats
     return redirect(f'/RideDetails/{tripID}')

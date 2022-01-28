@@ -22,11 +22,21 @@
             <!--About me - edit the action attribute!!! -->
             <form action="/showDetails" method="post">
                 <label for="rideFrom"></label>
-                <input type="search" name="rideFrom" id="rideFrom" placeholder="From: Choose starting point"
-                       class="feedback-input" required> <br>
+                <select name="rideFrom" id="rideFrom" class="feedback-input" required>
+                    <option value="" disabled selected>From:</option>
+                    {% for city in cities %}
+                        <option value="{{ city.city }}">{{ city.city }}</option>
+                    {% endfor %}
+                </select>
+                <br>
                 <label for="rideTo"></label>
-                <input type="search" name="rideTo" id="rideTo" placeholder="To: Where do you want to go?"
-                       class="feedback-input" required> <br>
+                <select name="rideTo" id="rideTo" class="feedback-input" required>
+                    <option value="" disabled selected>Drop at:</option>
+                    {% for city in cities %}
+                        <option value="{{ city.city }}">{{ city.city }}</option>
+                    {% endfor %}
+                </select>
+                <br>
                 <label for="date">When do you want to go?</label> <br>
                 <input type="date" name="date" id="date" class="feedback-input" required> <br>
                 <br>

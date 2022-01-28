@@ -49,6 +49,7 @@
                     <th>Start City</th>
                     <th>Drop City</th>
                     <th>Seats Amount</th>
+                    <th>Remove Registration</th>
                 </tr>
                 {% for row in tremp %}
                     <tr>
@@ -57,6 +58,15 @@
                         <td>{{ row.pick_up_city }}</td>
                         <td>{{ row.drop_city }}</td>
                         <td>{{ row.seats_amount }}</td>
+                        <td>
+                            {% if today < row.pick_up_date %}
+                                <form action="/removeReg" method="post">
+                                    <input hidden type="text" id="user" name="user" value="{{ session['email'] }}">
+                                    <input hidden type="text" id="trip" name="trip" value="{{ row.trip_id }}">
+                                    <input type="submit" value="Remove">
+                                </form>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
