@@ -23,7 +23,7 @@ def submitARide():
     passengers = request.form['passengers']
     #can only add future rides
     if datetime.strptime(date, '%Y-%m-%d').date() <= datetime.now().date():
-        flash("You can only add future rides")
+        flash("You can only add future rides - start tomorrow or later")
     else:
         #insert ride to DB
         newTrip = Trip(driver, date, time, pickupCity, dropCity, passengers, price)

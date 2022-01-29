@@ -25,6 +25,6 @@ def showDetails():
         flash("Couldn't find relevant trips for you")
         search = False
     elif search == False: #inserted date already passed
-        flash("You can't register for a past trip")
+        flash("You can only register for trips that start tomorrow or later")
     showDetails = True
     return render_template('SearchARide.html', search=search, showDetails=showDetails, cities=cities)

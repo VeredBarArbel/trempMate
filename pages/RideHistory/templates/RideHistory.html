@@ -9,6 +9,7 @@
 
 {% block main %}
     <main>
+        <h1 class="typingEffect" style="font-size: 237%">My Rides</h1><br>
 
         <!-- message -->
         {% for message in get_flashed_messages() %}
@@ -16,7 +17,7 @@
         {% endfor %}
 
         {% if driver %} <!-- rides where I'm the driver -->
-            <h1>Driver Ride History</h1>
+            <h1>Rides Where I'm The Driver</h1>
 
             <table>
                 <tr>
@@ -40,7 +41,7 @@
         <br>
 
         {% if tremp %} <!-- tremp rides -->
-            <h1>My Tremp History</h1>
+            <h1>My Tremps</h1>
 
             <table>
                 <tr>
