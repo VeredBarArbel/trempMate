@@ -1,4 +1,4 @@
-use `web-project-g17`
+use `web-project-g17`;
 
 create table if not exists cities
 (
@@ -45,29 +45,6 @@ create table if not exists trips
 		foreign key (driver) references users (email)
 );
 
-create table if not exists stops
-(
-	stop_id int auto_increment
-		primary key,
-	trip_id int not null,
-	user varchar(255) not null,
-	pick_up_address varchar(255) null,
-	drop_address varchar(255) null,
-	payment_method varchar(255) null,
-	seats_amount int not null,
-	rank_ride int null,
-	rank_notes text null,
-	constraint stops_ibfk_1
-		foreign key (user) references users (email),
-	constraint stops_ibfk_2
-		foreign key (trip_id) references trips (trip_id)
-);
-
-create index trip_id
-	on stops (trip_id);
-
-create index user
-	on stops (user);
 
 create index driver
 	on trips (driver);
